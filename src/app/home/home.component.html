@@ -5,67 +5,49 @@
      fxLayoutAlign.gt-md="space-around center"
      fxLayoutGap="10px">
 
-<mat-card *ngIf="dish" fxFlex [@expand]>
+<mat-card fxFlex [@expand]>
   <mat-card-header>
     <div mat-card-avatar></div>
     <mat-card-title>
-      <h3>{{dish.name | uppercase}}</h3>
+      <h3>Kerala Floods, 2018</h3>
     </mat-card-title>
   </mat-card-header>
-  <img mat-card-image src="{{BaseURL + dish.image}}" alt={{dish.name}}>
+  <img mat-card-image src="/assets/images/keralaflood.jpg" alt="Kerala Floods">
   <mat-card-content>
-    <p>{{dish.description}}
+    <p>The Indian state of Kerala has been devastated by severe floods. More than 350 people have died, while more than a million have been evacuated to over 4,000 relief camps. 
+      Rs. 10000 Cr  plus loss to state.      
     </p>
   </mat-card-content>
 </mat-card>
-  <div [hidden]="dish || dishErrMess">
-    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
-  </div>
-  <div *ngIf="dishErrMess">
-    <h2>Error</h2>
-    <h4>{{dishErrMess}}</h4>
-  </div>
 
-<mat-card *ngIf="promotion" fxFlex [@expand]>
+<mat-card fxFlex [@expand]>
   <mat-card-header>
     <div mat-card-avatar></div>
     <mat-card-title>
-      <h3>{{promotion.name | uppercase}}</h3>
+      <h3>Kashmir Floods, 2014</h3>
     </mat-card-title>
   </mat-card-header>
-  <img mat-card-image src="{{BaseURL + promotion.image}}" alt={{promotion.name}}>
+  <img mat-card-image src="/assets/images/Jammuflood.jpg" alt="Kashmir floods">
   <mat-card-content>
-    <p>{{promotion.description}}
+    <p>In Jammu and Kashmir, lives of thousands of people have been devastated by one of the worst floods to hit the state in over 100 years. The death toll after the floods was at 280, and 2.53 lakh houses are damaged in the state.
+      More than 2500 villages were affected in the floods.
     </p>
   </mat-card-content>
 </mat-card>
-  <div [hidden]="promotion || promoErrMess">
-    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
-  </div>
-  <div *ngIf="promoErrMess">
-    <h2>Error</h2>
-    <h4>{{dishErrMess}}</h4>
-  </div>
 
-<mat-card *ngIf="leader" fxFlex [@expand]>
+<mat-card fxFlex [@expand]>
   <mat-card-header>
     <div mat-card-avatar></div>
     <mat-card-title>
-      <h3>{{leader.name | uppercase}} {{leader.abbr}}</h3>
+      <h3>Gujarat Earthquake, 2001</h3>
     </mat-card-title>
   </mat-card-header>
-  <img mat-card-image src="{{BaseURL + leader.image}}" alt={{leader.name}}>
+  <img mat-card-image src="/assets/images/bhujearthquake.jpg" alt="Bhuj Earthquake">
   <mat-card-content>
-    <p>{{leader.designation}}</p>
-    <p>{{leader.description}}
+    <p>The earthquake struck near the town of Bhuj, and it was felt throughout much of northwestern India and parts of Pakistan.
+       The moment magnitude of the quake was 7.7. In addition to killing more than 20,000 people and injuring more than 150,000 others, the quake left hundreds of thousands homeless and destroyed or damaged more than a million buildings. 
     </p>
   </mat-card-content>
 </mat-card>
-  <div [hidden]="leader || leaderErrMess">
-    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
-  </div>
-  <div *ngIf="leaderErrMess">
-    <h2>Error</h2>
-    <h4>{{dishErrMess}}</h4>
-  </div>  
+ 
 </div>

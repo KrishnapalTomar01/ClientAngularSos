@@ -1,0 +1,38 @@
+<mat-toolbar mat-dialog-title color="accent">
+  SOS
+  <span class="flex-spacer"></span>
+  <button mat-button mat-dialog-close>&times;</button>
+</mat-toolbar>
+
+<form novalidate [formGroup]="sFormGroup" (ngSubmit)="onSubmit()">
+
+  <mat-dialog-content>
+    <p>
+      <mat-form-field>
+        <input matInput placeholder="Name" type="text" formControlName="name" name="name" required>
+        <!--<mat-hint>
+          <span [hidden]="name.pristine">
+          <span [hidden]="!name.errors?.required">username is required</span>
+          </span>
+        </mat-hint>-->
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select name="disastertype" formControlName="disastertype" placeholder="Select Disaster Type" required>
+          <mat-option *ngFor="let disaster of disasters" [value]="disaster">
+            {{disaster}}
+          </mat-option>
+        </mat-select>
+        <!--<mat-hint>
+            <span [hidden]="disastertype.pristine">
+            <span [hidden]="!disastertype.errors?.required">This field is required</span>
+            </span>
+          </mat-hint>-->
+      </mat-form-field> 
+    </p>     
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <span class="flex-spacer"></span>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button type="submit" mat-button class="background-accent text-floral-white" [disabled]="sFormGroup.invalid">Submit</button>
+  </mat-dialog-actions>
+</form>

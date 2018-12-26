@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { LoginComponent } from '../login/login.component';
+import {SosComponent} from '../sos/sos.component';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -30,6 +31,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  openSOS(){
+    let sosRef = this.dialog.open(SosComponent, {width: '500px', height: '450px'});
+
+    sosRef.afterClosed()
+      .subscribe(result => {
+        console.log(result);
+      });
+  }
   openLoginForm() {
     let loginRef = this.dialog.open(LoginComponent, {width: '500px', height: '450px'});
 
