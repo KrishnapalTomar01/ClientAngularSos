@@ -26,7 +26,7 @@ export class SosComponent implements OnInit {
 
   createForm() {
     this.sFormGroup = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25) ]],
+      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25) ]],
       disastertype: ['',[Validators.required]],
     });
     if (navigator.geolocation) {

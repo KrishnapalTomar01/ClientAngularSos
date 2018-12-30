@@ -1,6 +1,8 @@
 <mat-toolbar mat-dialog-title color="primary">
-  Login
+  Login/Register
   <span class="flex-spacer"></span>
+  <button mat-button (click)="loginbtn()">Login</button>
+  <button mat-button (click)="registerbtn()">Register</button>
   <button mat-button mat-dialog-close>&times;</button>
 </mat-toolbar>
 
@@ -9,7 +11,8 @@
   <h4>{{errMess}}</h4>
 </div>
 
-<form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit()">
+<div *ngIf="login">
+ <form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit()">
 
   <mat-dialog-content>
     <p>
@@ -21,6 +24,8 @@
           </span>
         </mat-hint>
       </mat-form-field>
+    </p>
+    <p>
       <mat-form-field dividerColor="{{password.invalid && !password.pristine ? 'warn' : 'primary'}}">
         <input matInput placeholder="Password" type="password" [(ngModel)]="user.password" name="password" #password="ngModel" required>
         <mat-hint>
@@ -29,7 +34,7 @@
           </span>
         </mat-hint>
       </mat-form-field>
-      <mat-checkbox [(ngModel)]="user.remember" name="remember">Remember Me</mat-checkbox>
+      <mat-checkbox style="margin-left: 20px" [(ngModel)]="user.remember" name="remember">Remember Me</mat-checkbox>
     </p>     
   </mat-dialog-content>
   <mat-dialog-actions>
@@ -37,4 +42,37 @@
     <button mat-button mat-dialog-close>Cancel</button>
     <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="loginForm.form.invalid" >Login</button>
   </mat-dialog-actions>
-</form>
+ </form>
+</div>
+<div *ngIf="!login">
+  <form novalidate [formGroup]="rFormGroup" (ngSubmit)="onSubmitRegister()">
+    <mat-dialog-content>
+      <p>
+        <mat-form-field>
+          <input matInput placeholder="UserName" type="text" formControlName="uname" name="uname" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Password" type="text" formControlName="password" name="password" required>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input matInput placeholder="Name" type="text" formControlName="name" name="name" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="phone" type="text" formControlName="phone" name="phone" required>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input matInput placeholder="Email" type="text" formControlName="email" name="email" required>
+        </mat-form-field>
+      </p>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <span class="flex-spacer"></span>
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="rFormGroup.invalid" >Register</button>
+    </mat-dialog-actions>
+  </form>
+</div>

@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       });
   }
   openLoginForm() {
-    let loginRef = this.dialog.open(LoginComponent, {width: '500px', height: '450px'});
+    let loginRef = this.dialog.open(LoginComponent, {width: '600px', height: '550px'});
 
     loginRef.afterClosed()
       .subscribe(result => {
