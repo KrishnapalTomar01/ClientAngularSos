@@ -9,12 +9,14 @@
   <mat-dialog-content>
     <p>
       <mat-form-field>
-        <input matInput placeholder="Name" type="text" formControlName="name" name="name" required>
-        <!--mat-hint>
-          <span [hidden]="name.pristine">
-          <span [hidden]="!name.errors?.required">username is required</span>
+        <input matInput placeholder="Name" type="text" formControlName="name" name="name" pattern="[a-zA-Z ]*" required>
+        <mat-error>
+          <span [hidden]="sFormGroup.controls.name.untouched">
+          <span [hidden]="!sFormGroup.controls.name.errors?.required">username is required</span>
+          <span [hidden]="!sFormGroup.controls.name.errors?.minlength">username is short</span>
+          <span [hidden]="!sFormGroup.controls.name.errors?.pattern">username is invalid</span>
           </span>
-        </mat-hint-->
+        </mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-select name="disastertype" formControlName="disastertype" placeholder="Select Disaster Type" required>
@@ -22,13 +24,24 @@
             {{disaster}}
           </mat-option>
         </mat-select>
-        <!--<mat-hint>
-            <span [hidden]="disastertype.pristine">
-            <span [hidden]="!disastertype.errors?.required">This field is required</span>
+        <mat-error>
+            <span [hidden]="sFormGroup.controls.disastertype.pristine">
+            <span [hidden]="!sFormGroup.controls.disastertype.errors?.required">This field is required</span>
             </span>
-          </mat-hint>-->
+          </mat-error>
       </mat-form-field> 
-    </p>     
+    </p> 
+    <p>
+    <mat-form-field>
+      <input matInput placeholder="Mobile Number" type="text" pattern="[0-9]{10}" formControlName="phone" name="phone" required>
+      <mat-error>
+        <span [hidden]="sFormGroup.controls.phone.untouched">
+        <span [hidden]="!sFormGroup.controls.phone.errors?.pattern">Enter Valid Phone number</span>
+        <span [hidden]="!sFormGroup.controls.phone.errors?.required">This field is required</span>
+        </span>
+      </mat-error>
+    </mat-form-field>  
+    </p>  
   </mat-dialog-content>
   <mat-dialog-actions>
     <span class="flex-spacer"></span>

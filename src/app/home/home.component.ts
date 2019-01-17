@@ -1,12 +1,8 @@
 
 import { Component, OnInit, Inject } from '@angular/core';
 
-import { Dish } from '../shared/dish';
-import { DishService } from '../services/dish.service';
-import { Promotion } from '../shared/promotion';
-import { PromotionService } from '../services/promotion.service';
-import { Leader } from '../shared/leader';
-import { LeaderService } from '../services/leader.service';
+import { Post } from '../shared/post';
+import { AddpostService } from '../services/addpost.service';
 import { flyInOut, expand } from '../animations/app.animation';
 
 @Component({
@@ -23,10 +19,15 @@ import { flyInOut, expand } from '../animations/app.animation';
   ]
 })
 export class HomeComponent implements OnInit {
-
-  constructor() { }
+  posts: Post[];
+  errMess: string;
+  constructor(private postService: AddpostService,
+    @Inject('BaseURL') private BaseURL) { }
 
   ngOnInit() {
+    this.postService.getPosts()
+     .subscribe(posts=>this.posts=posts,
+     errMess=>this.errMess=<any>errMess)
   }
 
 }

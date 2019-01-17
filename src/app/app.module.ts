@@ -9,6 +9,8 @@ import { MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldMo
   MatCardModule, MatIconModule, MatProgressSpinnerModule, MatDialogModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StorageServiceModule } from 'angular-webstorage-service';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 import 'hammerjs';
 
@@ -30,6 +32,7 @@ import { FeedbackService } from './services/feedback.service';
 import { AuthService } from './services/auth.service';
 import { AuthInterceptor, UnauthorizedInterceptor } from './services/auth.interceptor';
 import { FavoriteService } from './services/favorite.service';
+import {AddpostService} from './services/addpost.service';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 
@@ -40,6 +43,9 @@ import { RestangularConfigFactory } from './shared/restConfig';
 import { HighlightDirective } from './directives/highlight.directive';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { SosComponent } from './sos/sos.component';
+import { SosService } from './services/sos.service';
+import { AddpostComponent } from './addpost/addpost.component';
+import { EditpostComponent } from './editpost/editpost.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +60,10 @@ import { SosComponent } from './sos/sos.component';
     LoginComponent,
     HighlightDirective,
     FavoritesComponent,
-    SosComponent
+    SosComponent,
+    AddpostComponent,
+    FileSelectDirective,
+    EditpostComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +77,8 @@ import { SosComponent } from './sos/sos.component';
     FlexLayoutModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    RestangularModule.forRoot(RestangularConfigFactory)
+    RestangularModule.forRoot(RestangularConfigFactory),
+    StorageServiceModule
   ],
   providers: [
     DishService,
@@ -78,6 +88,8 @@ import { SosComponent } from './sos/sos.component';
     ProcessHTTPMsgService,
     FeedbackService,
     AuthService,
+    SosService,
+    AddpostService,
     FavoriteService,
     {
       provide: HTTP_INTERCEPTORS,

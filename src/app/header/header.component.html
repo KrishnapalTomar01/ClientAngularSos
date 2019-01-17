@@ -4,6 +4,8 @@
   <a mat-button routerLink="/aboutus" routerLinkActive="active"><span class="fa fa-info fa-lg"></span> About</a>
   <a mat-button routerLink="/contactus" routerLinkActive="active"><span class="fa fa-address-card fa-lg"></span> Contact</a>
   <a mat-button (click)="openSOS()"><span class="fa fa-medkit fa-lg"></span> SOS</a>
+  <a *ngIf="username" mat-button routerLink="/addpost" routerLinkActive="active"> Add Post</a>
+  <a *ngIf="username" mat-button> Notifications</a>
   <span class="flex-spacer"></span>
   <a *ngIf="!username" mat-button (click)="openLoginForm()"><span class="fa fa-sign-in fa-lg"></span> Login</a>
   <a *ngIf="username">{{username}}</a>

@@ -1,26 +1,44 @@
-<div class="container"
-     fxLayout="row"
-     fxLayout.sm="column"
-     fxLayout.xs="column"
-     fxLayoutAlign.gt-md="space-around center"
+<div
+     fxLayout="column"
+     fxLayoutAlign="space-around center"
+     *ngIf="posts" 
      fxLayoutGap="10px">
 
-<mat-card fxFlex [@expand]>
-  <mat-card-header>
-    <div mat-card-avatar></div>
-    <mat-card-title>
-      <h3>Kerala Floods, 2018</h3>
-    </mat-card-title>
-  </mat-card-header>
-  <img mat-card-image src="/assets/images/keralaflood.jpg" alt="Kerala Floods">
-  <mat-card-content>
-    <p>The Indian state of Kerala has been devastated by severe floods. More than 350 people have died, while more than a million have been evacuated to over 4,000 relief camps. 
-      Rs. 10000 Cr  plus loss to state.      
-    </p>
-  </mat-card-content>
-</mat-card>
+     <div fxFlex>
+        <div>
+           <h1>Posts</h1>
+           <hr>
+        </div>
+      </div>
 
-<mat-card fxFlex [@expand]>
+    <mat-card *ngFor="let post of posts" fxFlex [@expand]>
+      <mat-card-header>
+      <div mat-card-avatar></div>
+      <mat-card-title>
+        <h2>
+        {{post.caption}}</h2>
+      </mat-card-title>
+    </mat-card-header>
+    <img *ngIf='post.image' mat-card-image src='{{BaseURL}}/images//{{post.image}}' alt='{{post.caption}}'>
+    <mat-card-content>
+     <p>
+     {{post.text}}
+     </p>
+     <p>
+       --{{post.author.name}}, {{post.updatedAt | date }}
+     </p>
+    </mat-card-content>
+    </mat-card>
+  <div [hidden]="posts || errMess">
+      <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+  </div>
+  <div *ngIf="errMess">
+      <h2>Error</h2>
+      <h4>{{errMess}}</h4>
+  </div>
+
+
+<!--mat-card fxFlex [@expand]>
   <mat-card-header>
     <div mat-card-avatar></div>
     <mat-card-title>
@@ -48,6 +66,6 @@
        The moment magnitude of the quake was 7.7. In addition to killing more than 20,000 people and injuring more than 150,000 others, the quake left hundreds of thousands homeless and destroyed or damaged more than a million buildings. 
     </p>
   </mat-card-content>
-</mat-card>
+</mat-card-->
  
 </div>

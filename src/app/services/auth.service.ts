@@ -82,8 +82,12 @@ export class AuthService {
     localStorage.removeItem(this.tokenKey);
   }
 
-  signUp() {
-
+  signUp(user:any) :Observable<any> {
+      return this.http.post(baseURL + 'users/signup',user)
+      .map(res=>{
+        return {'success':true};
+      })
+      .catch(error=>{return this.processHTTPMsgService.handleError(error);});
   }
 
   logIn(user: any): Observable<any> {

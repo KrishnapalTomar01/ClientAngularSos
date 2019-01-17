@@ -1,0 +1,48 @@
+<div class="container"
+     fxLayout="column"
+     fxLayoutGap="10px">
+
+     <div fxFlex>
+            <div>
+               <h3>Edit Post</h3>
+               <hr>
+            </div>
+     </div>
+
+  <div fxFlex fxFlexOffset="20px" class="form-size">
+      <button mat-button (click)="goBack()"><span class="fa fa-arrow-left fa-lg"></span></button>
+      <img *ngIf="oldImage" class="container" src="{{BaseURL}}/images//{{oldImage}}" alt="image" height="70px" width="100px">
+      <img *ngIf="newImage" class="container" src="{{BaseURL}}/images//{{newImage}}" alt="image" height="70px" width="100px">
+      <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+      <!-- button to trigger the file upload when submitted -->
+      <button mat-button class="background-accent text-floral-white"
+            (click)="uploader.uploadAll()" 
+            [disabled]="!uploader.getNotUploadedItems().length">
+            Change Pic
+      </button>
+      <form novalidate [formGroup]="sFormGroup" (ngSubmit)="onSubmit()">
+          <mat-form-field class='half-width'>
+            <input matInput placeholder="Caption" type="text" formControlName="caption" name="caption" required>
+            <mat-error>
+              <span [hidden]="sFormGroup.controls.caption.untouched">
+              <span [hidden]="!sFormGroup.controls.caption.errors?.required">caption is required</span>
+              <span [hidden]="!sFormGroup.controls.caption.errors?.minlength">caption is short</span>
+              </span>
+            </mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field class='full-width'>
+            <textarea matInput placeholder="Text Field" rows='5' cols='80' type="text" formControlName="text" name="text" required></textarea>
+            <mat-error>
+                <span [hidden]="sFormGroup.controls.text.untouched">
+                <span [hidden]="!sFormGroup.controls.text.errors?.required">This field is required</span>
+                <span [hidden]="!sFormGroup.controls.text.errors?.minlength">text is too short</span>
+                </span>
+              </mat-error>
+          </mat-form-field> 
+          <br>
+        <span class="flex-spacer"></span>
+        <button type="submit" mat-button class="background-accent text-floral-white" [disabled]="sFormGroup.invalid">Confirm</button>
+      </form>
+  </div>  
+</div>

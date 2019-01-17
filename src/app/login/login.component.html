@@ -48,24 +48,82 @@
   <form novalidate [formGroup]="rFormGroup" (ngSubmit)="onSubmitRegister()">
     <mat-dialog-content>
       <p>
-        <mat-form-field>
-          <input matInput placeholder="UserName" type="text" formControlName="uname" name="uname" required>
+        <mat-form-field >
+          <input matInput placeholder="UserName" type="text" formControlName="username" name="username" pattern="[a-zA-Z][a-zA-Z0-9-_.]{1,20}" required>
+          <mat-error>
+            <span [hidden]="rFormGroup.controls.username.untouched">
+            <span [hidden]="!rFormGroup.controls.username.errors?.required">username is required</span>
+            <span [hidden]="!rFormGroup.controls.username.errors?.minlength">username is short</span>
+            <span [hidden]="!rFormGroup.controls.username.errors?.pattern">Invalid!! First character must be an alphabet; Numbers,Letters,'-','_','.' allowed</span>
+            </span>
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Password" type="text" formControlName="password" name="password" required>
+          <input matInput placeholder="Password" type="password" formControlName="password" name="password" required>
+          <mat-error>
+            <span [hidden]="rFormGroup.controls.password.untouched">
+            <span [hidden]="!rFormGroup.controls.password.errors?.required">Password is required</span>
+            <span [hidden]="!rFormGroup.controls.password.errors?.minlength">Password is short</span>
+            </span>
+          </mat-error>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field>
-          <input matInput placeholder="Name" type="text" formControlName="name" name="name" required>
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="phone" type="text" formControlName="phone" name="phone" required>
+          <input matInput placeholder="Name Of Organization" type="text" formControlName="name" name="name" pattern="[a-zA-Z ]*" required>
+          <mat-error>
+            <span [hidden]="rFormGroup.controls.name.untouched">
+            <span [hidden]="!rFormGroup.controls.name.errors?.required">Organization Name is required</span>
+            <span [hidden]="!rFormGroup.controls.name.errors?.minlength">Organization Name is short</span>
+            <span [hidden]="!rFormGroup.controls.name.errors?.pattern">Organization Name is invalid</span>
+            </span>
+          </mat-error>
         </mat-form-field>
       </p>
       <p>
+        <mat-form-field>
+          <input matInput placeholder="Mobile No." type="text" formControlName="phone" pattern="[0-9]{10}" name="phone" required>
+          <mat-error>
+            <span [hidden]="rFormGroup.controls.phone.untouched">
+              <span [hidden]="!rFormGroup.controls.phone.errors?.pattern">Enter Valid Phone number</span>
+              <span [hidden]="!rFormGroup.controls.phone.errors?.required">This field is required</span>
+              </span>
+          </mat-error>
+        </mat-form-field>
         <mat-form-field>
           <input matInput placeholder="Email" type="text" formControlName="email" name="email" required>
+          <mat-error *ngIf="rFormGroup.controls.email.invalid">{{getErrorEmail()}}</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+       <mat-form-field>
+        <input matInput placeholder="Address" type="text" formControlName="address" name="address" required>
+        <mat-error>
+          <span [hidden]="rFormGroup.controls.address.untouched">
+          <span [hidden]="!rFormGroup.controls.address.errors?.required">Address is required</span>
+          <span [hidden]="!rFormGroup.controls.address.errors?.minlength">Address is short</span>
+          </span>
+        </mat-error>
+       </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input matInput placeholder="City" type="text" formControlName="city" name="city" required>
+          <mat-error>
+          <span [hidden]="rFormGroup.controls.city.untouched">
+            <span [hidden]="!rFormGroup.controls.city.errors?.required">City Name is required</span>
+            <span [hidden]="!rFormGroup.controls.city.errors?.minlength">City Name is short</span>
+          </span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="State" type="text" formControlName="state" name="state" required>
+          <mat-error>
+          <span [hidden]="rFormGroup.controls.state.untouched">
+            <span [hidden]="!rFormGroup.controls.state.errors?.required">State Name is required</span>
+            <span [hidden]="!rFormGroup.controls.state.errors?.minlength">State Name is short</span>
+          </span>
+          </mat-error>
         </mat-form-field>
       </p>
     </mat-dialog-content>
