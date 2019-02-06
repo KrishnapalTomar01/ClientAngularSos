@@ -10,10 +10,10 @@ $background-pale: #D1C4E9;
 }
 
 .jumbotron {
-    @include zero-margin(70px,30px);
+    @include zero-margin(10px,30px);
     background: $background-light ;
     color:floralwhite;
-    min-height: 150px;
+    min-height: 100px;
 }
 
 .active {
