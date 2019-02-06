@@ -9,6 +9,8 @@ export interface SOS{
   latitude:number;
   longitude:number;
   phone:string;
+  city:string;
+  state:string;
 }
 @Component({
   selector: 'app-sos',
@@ -23,6 +25,8 @@ export class SosComponent implements OnInit {
   latitude:number;
   longitude:number;
   geocoder;
+  city:string;
+  state:string;
   
   constructor(private fb: FormBuilder,public dialogRef: MatDialogRef<SosComponent>,private ngZone: NgZone,
     private sosService:SosService) { }
@@ -41,7 +45,34 @@ export class SosComponent implements OnInit {
       navigator.geolocation.getCurrentPosition((position)=>{
         this.latitude=position.coords.latitude; 
         this.longitude=position.coords.longitude; 
-        this.displayLocation(position.coords.latitude,position.coords.longitude);
+        /*this.displayLocation(position.coords.latitude,position.coords.longitude);*/
+        this.geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+    
+        this.geocoder.geocode(
+            {'latLng': latlng}, 
+            (results, status) =>{
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        var add= results[0].formatted_address ;
+                        var  value=add.split(", ");
+    
+                        var count=value.length;
+                        var country=value[count-1];
+                        this.state=value[count-2];
+                        this.city=value[count-3];
+                        console.log("city name is: " +this.city+" country: "+country+" state: "+this.state);
+                        console.log("add= "+add);
+                    }
+                    else  {
+                        console.log("address not found");
+                    }
+                }
+                else {
+                    console.log("Geocoder failed due to: " + status);
+                }
+            }
+        );
        });
        
       }
@@ -52,7 +83,9 @@ export class SosComponent implements OnInit {
          disasterType:this.sFormGroup.get("disastertype").value,
          phone:this.sFormGroup.get("phone").value,
          latitude:this.latitude,
-         longitude:this.longitude   
+         longitude:this.longitude,
+         city:this.city,
+         state:this.state   
       }
       if(this.latitude!=undefined){
       console.log(this.sos);
@@ -80,9 +113,9 @@ export class SosComponent implements OnInit {
 
                     var count=value.length;
                     var country=value[count-1];
-                    var state=value[count-2];
-                    var city=value[count-3];
-                    console.log("city name is: " +city+" country: "+country+" state: "+state);
+                    this.state=value[count-2];
+                    this.city=value[count-3];
+                    console.log("city name is: " +this.city+" country: "+country+" state: "+this.state);
                     console.log("add= "+add);
                 }
                 else  {
