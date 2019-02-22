@@ -95,8 +95,9 @@
           <mat-error *ngIf="rFormGroup.controls.email.invalid">{{getErrorEmail()}}</mat-error>
         </mat-form-field>
       </p>
+    
       <p>
-       <mat-form-field>
+       <mat-form-field  *ngIf="show" >
         <input matInput placeholder="Address" type="text" formControlName="address" name="address" required>
         <mat-error>
           <span [hidden]="rFormGroup.controls.address.untouched">
@@ -105,9 +106,10 @@
           </span>
         </mat-error>
        </mat-form-field>
+       <mat-checkbox style="margin-left: 20px" (change)="onChkChange()" [(ngModel)]="isChecked" formControlName="location" name="location">Current Location</mat-checkbox>
       </p>
       <p>
-        <mat-form-field>
+        <mat-form-field *ngIf="show">
           <input matInput placeholder="City" type="text" formControlName="city" name="city" required>
           <mat-error>
           <span [hidden]="rFormGroup.controls.city.untouched">
@@ -116,7 +118,7 @@
           </span>
           </mat-error>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field *ngIf="show">
           <input matInput placeholder="State" type="text" formControlName="state" name="state" required>
           <mat-error>
           <span [hidden]="rFormGroup.controls.state.untouched">
