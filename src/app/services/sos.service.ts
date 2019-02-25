@@ -22,4 +22,14 @@ export class SosService {
       .catch(error => { return this.processHTTPMsgService.handleError(error); });
     }
 
+    getNotifications(): Observable<Sos[]>{
+      return this.http.get(baseURL + 'notifications')
+    .catch(error => { return this.processHTTPMsgService.handleError(error); });
+    }
+
+    rescuePeople(id:string,post:any):Observable<any>{
+      return this.http.put(baseURL+'notifications/'+id,post)
+      .catch(error => { return this.processHTTPMsgService.handleError(error); });
+    }
+
 }

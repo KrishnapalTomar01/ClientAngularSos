@@ -1,0 +1,39 @@
+<div class="container"
+     fxLayout="column"
+     fxLayoutGap="10px">
+
+  <div fxFlex>
+    <div>
+      <h3>Notifications</h3>
+      <hr>
+    </div>
+  </div>
+
+  <div fxFlex *ngIf="messages" [@expand]>
+    <mat-grid-list cols="2" rowHeight="250px">
+      <mat-grid-tile *ngFor="let message of messages">
+        <mat-card>
+         <mat-card-content>
+          <h4>Victim Name: {{message.name | uppercase}}</h4>
+          <h4>Disaster Type: {{message.disasterType}}</h4> 
+          <h4>Phone: {{message.phone}}</h4>
+          <h4>Location: {{message.city}} ,{{message.state}}</h4>
+          <a href="http://maps.google.com/maps?q={{message.latitude}},{{message.longitude}}">http://maps.google.com/maps?q={{message.latitude}},{{message.longitude}}</a>                  
+         </mat-card-content>
+         <mat-card-actions>
+            <button *ngIf="!message.rescue" mat-button class="background-accent text-floral-white" (click)="rescue(message._id)">Rescued</button>
+            <div *ngIf="message.rescue" style="background-color: darkslateblue;color:floralwhite;width:150px">Rescued Already</div>
+         </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div [hidden]="messages || errMess">
+    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+  </div>
+  <div *ngIf="errMess">
+    <h2>Error</h2>
+    <h4>{{errMess}}</h4>
+  </div>
+
+</div>

@@ -8,6 +8,7 @@ import { AboutComponent } from '../about/about.component';
 import { ContactComponent } from '../contact/contact.component';
 import {AddpostComponent} from '../addpost/addpost.component';
 import {EditpostComponent} from '../editpost/editpost.component';
+import {NotificationComponent} from '../notification/notification.component';
 
 export const routes: Routes = [
   { path: 'home',  component: HomeComponent },
@@ -15,5 +16,6 @@ export const routes: Routes = [
   { path: 'contactus',     component: ContactComponent },
   {path:'addpost',component:AddpostComponent},
   {path:'editpost/:id',component:EditpostComponent},
+  {path:'notifications',component:NotificationComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];

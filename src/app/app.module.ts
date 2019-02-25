@@ -46,6 +46,7 @@ import { SosComponent } from './sos/sos.component';
 import { SosService } from './services/sos.service';
 import { AddpostComponent } from './addpost/addpost.component';
 import { EditpostComponent } from './editpost/editpost.component';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { EditpostComponent } from './editpost/editpost.component';
     SosComponent,
     AddpostComponent,
     FileSelectDirective,
-    EditpostComponent
+    EditpostComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
