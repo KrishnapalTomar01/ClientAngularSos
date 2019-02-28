@@ -1,0 +1,37 @@
+<div class="container"
+     fxLayout="column"
+     fxLayoutGap="10px">
+
+     <div fxFlex>
+            <div>
+               <h3>SOS Statistics</h3>
+               <hr>
+            </div>
+     </div>
+
+<table id="t01" mat-table class="mat-elevation-z8">
+
+  <tr>
+    <th *ngFor="let col of displayedColumns">
+       {{col}}
+    </th>
+  </tr>
+  <tr *ngFor="let element of statsTotal">
+    <td>
+       {{element._id.state}}
+    </td>
+    <td>
+      {{element._id.city}}
+    </td>
+    <td>
+      {{element.total}}
+    </td>
+    <td>
+      {{element.rescueNum}}
+    </td>
+  </tr> 
+</table>
+<div *ngIf="errMess">
+   {{errMess}}
+</div>
+</div>

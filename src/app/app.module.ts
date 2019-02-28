@@ -7,6 +7,7 @@ import { MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldMo
   MatInputModule, MatRadioModule, MatSelectModule, MatSliderModule,
   MatSlideToggleModule, MatToolbarModule, MatListModule, MatGridListModule,
   MatCardModule, MatIconModule, MatProgressSpinnerModule, MatDialogModule } from '@angular/material';
+import {MatTableModule} from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StorageServiceModule } from 'angular-webstorage-service';
@@ -33,6 +34,7 @@ import { AuthService } from './services/auth.service';
 import { AuthInterceptor, UnauthorizedInterceptor } from './services/auth.interceptor';
 import { FavoriteService } from './services/favorite.service';
 import {AddpostService} from './services/addpost.service';
+import {StatisticsService} from './services/statistics.service';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 
@@ -47,6 +49,7 @@ import { SosService } from './services/sos.service';
 import { AddpostComponent } from './addpost/addpost.component';
 import { EditpostComponent } from './editpost/editpost.component';
 import { NotificationComponent } from './notification/notification.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +68,8 @@ import { NotificationComponent } from './notification/notification.component';
     AddpostComponent,
     FileSelectDirective,
     EditpostComponent,
-    NotificationComponent
+    NotificationComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +80,7 @@ import { NotificationComponent } from './notification/notification.component';
     MatInputModule, MatRadioModule, MatSelectModule, MatSliderModule,
     MatSlideToggleModule, MatToolbarModule, MatListModule, MatGridListModule,
     MatCardModule, MatIconModule, MatProgressSpinnerModule, MatDialogModule,
+    MatTableModule,
     FlexLayoutModule,
     AppRoutingModule,
     ReactiveFormsModule,
@@ -92,6 +97,7 @@ import { NotificationComponent } from './notification/notification.component';
     AuthService,
     SosService,
     AddpostService,
+    StatisticsService,
     FavoriteService,
     {
       provide: HTTP_INTERCEPTORS,

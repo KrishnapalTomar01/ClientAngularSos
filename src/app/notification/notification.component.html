@@ -10,13 +10,14 @@
   </div>
 
   <div fxFlex *ngIf="messages" [@expand]>
-    <mat-grid-list cols="2" rowHeight="250px">
-      <mat-grid-tile *ngFor="let message of messages">
+    <mat-grid-list cols="2" rowHeight="270px">
+      <mat-grid-tile *ngFor="let message of messages"  gutterSize="10px" >
         <mat-card>
          <mat-card-content>
           <h4>Victim Name: {{message.name | uppercase}}</h4>
           <h4>Disaster Type: {{message.disasterType}}</h4> 
           <h4>Phone: {{message.phone}}</h4>
+          <h4>Date: {{message.createdAt|date:'medium'}}</h4>
           <h4>Location: {{message.city}} ,{{message.state}}</h4>
           <a href="http://maps.google.com/maps?q={{message.latitude}},{{message.longitude}}">http://maps.google.com/maps?q={{message.latitude}},{{message.longitude}}</a>                  
          </mat-card-content>
