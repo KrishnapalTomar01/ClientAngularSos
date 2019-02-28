@@ -10,26 +10,49 @@
      </div>
 
 <table id="t01" mat-table class="mat-elevation-z8">
-
-  <tr>
-    <th *ngFor="let col of displayedColumns">
+  <thead>
+    <tr>
+      <th *ngFor="let col of displayedColumns">
        {{col}}
-    </th>
-  </tr>
-  <tr *ngFor="let element of statsTotal">
-    <td>
-       {{element._id.state}}
-    </td>
-    <td>
-      {{element._id.city}}
-    </td>
-    <td>
-      {{element.total}}
-    </td>
-    <td>
-      {{element.rescueNum}}
-    </td>
-  </tr> 
+      </th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let element of statsTotal" (click)="showTable(element)">
+    <tr>
+      <td>
+        {{element._id.state}}
+      </td>
+      <td>
+        {{element._id.city}}
+      </td>
+      <td>
+        {{element.total}}
+      </td>
+      <td>
+        {{element.rescueNum}}
+      </td>
+    </tr> 
+    <tr [ngClass]="{'hidden': !selectedElement || (selectedElement._id.city != element._id.city || selectedElement._id.state!=element._id.state)}">
+        <td colspan="4">
+          <table>
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Month</th>
+                <th colspan="2">Disaster Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let details of element.details">
+                 <td>{{details.year}}</td>
+                 <td>{{months[details.month-1]}}</td>
+                 <td colspan="2">{{details.disasterType}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+    </tr>
+  </tbody>
 </table>
 <div *ngIf="errMess">
    {{errMess}}
