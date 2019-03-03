@@ -90,10 +90,11 @@ export class SosComponent implements OnInit {
       if(this.latitude!=undefined){
       console.log(this.sos);
       this.sosService.postMessage(this.sos).subscribe(res=>{
-        console.log(res)
+        console.log(res);
+        alert("Successfully sent request...");
       },err=>console.log(err));
       this.dialogRef.close(); 
-      alert("Successfully sent request...");
+     
       }
       else{
         alert("Turn On location");
