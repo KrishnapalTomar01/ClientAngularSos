@@ -6,12 +6,13 @@
   <button mat-button mat-dialog-close>&times;</button>
 </mat-toolbar>
 
-<div *ngIf="errMess">
-  <h2>Error</h2>
-  <h4>{{errMess}}</h4>
-</div>
+
 
 <div *ngIf="login">
+    <div *ngIf="errMess1">
+        <h2>Error</h2>
+        <h4 style="color:red">Wrong Username or password</h4>
+    </div>
  <form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit()">
 
   <mat-dialog-content>
@@ -45,6 +46,10 @@
  </form>
 </div>
 <div *ngIf="!login">
+    <div *ngIf="errMess2">
+        <h2>Error</h2>
+        <h4 style="color:red">Username already exist</h4>
+    </div>
   <form novalidate [formGroup]="rFormGroup" (ngSubmit)="onSubmitRegister()">
     <mat-dialog-content>
       <p>

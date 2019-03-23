@@ -31,7 +31,8 @@ export class LoginComponent implements OnInit {
   show=true;
   isChecked = false;
   user = {username: '', password: '', remember: false};
-  errMess: string;
+  errMess1: string;
+  errMess2:string;
   latitude:number;
   longitude:number;
   geocoder;
@@ -93,7 +94,7 @@ export class LoginComponent implements OnInit {
       },
       error => {
         console.log(error);
-        this.errMess = error
+        this.errMess1 = error
       });
   }  
   onChkChange(){
@@ -149,7 +150,6 @@ export class LoginComponent implements OnInit {
         if (status == google.maps.GeocoderStatus.OK) {
           this.latitude = results[0].geometry.location.lat();
           this.longitude = results[0].geometry.location.lng();
-          alert(this.latitude);
           this.reg= {
             name:this.rFormGroup.get("name").value,
             password:this.rFormGroup.get("password").value,
@@ -182,16 +182,17 @@ export class LoginComponent implements OnInit {
    this.authService.signUp(this.reg)
    .subscribe(res=>{
      if(res.success){
+       alert("Successfully registered...");
        this.dialogRef.close(res.success);
      }
      else{
        console.log(res);
-       this.errMess=res.err;
+       this.errMess2=res.err;
      }
    },
    error=>{
      console.log(error);
-     this.errMess=error;
+     this.errMess2=error;
    }) 
   }
 }
